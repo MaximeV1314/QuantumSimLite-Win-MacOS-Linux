@@ -42,6 +42,8 @@ Ensure your system meets the following requirements for optimal performance:
     - Numpy at https://numpy.org/install/
     - Pandas at https://pandas.pydata.org/docs/getting_started/install.html
     - PIL at https://pillow.readthedocs.io/en/stable/installation.html
+    - Idlelib wich is normaly already downloaded with python 3.7+ in Windows and MACOS. In Linux, use on the prompt the command : sudo apt-get install idle3
+    - FFmepeg at https://www.ffmpeg.org/download.html
 5. Execute the python script QuantumSimLite.py
 6. Enjoy.
 
