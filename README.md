@@ -31,11 +31,11 @@ Welcome to QuantumSimLite aplication made by Maxime Vinteler (@maximev1314 on Tw
 
 Ensure your system meets the following requirements for optimal performance:
 - Operating System: Windows, MACOS, Linux.
-- Disk Space: 380 MB of available space
+- Disk Space: 40 MB of available space
 
 ## Installation:
 
-1. Download the repository (Code --> Download ZIP) at https://github.com/MaximeV1314/QuantumSimLite-Windows
+1. Download the repository (Code --> Download ZIP) at https://github.com/MaximeV1314/QuantumSimLite-Win-MacOS-Linux
 2. Unzip the file in your directory.
 3. Ensure that the following Python libraries are installed on your computer (it is recommended to use the latest version of Python along with these libraries):
     - Matplotlib at https://matplotlib.org/stable/users/installing/index.html
