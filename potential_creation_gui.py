@@ -21,7 +21,7 @@ def create_new_potential():
     root2.columnconfigure(0, weight=1)
     root2.columnconfigure(1, weight=3)
 
-    image = Image.open(os.path.dirname(__file__) + "\info_button.png", mode = 'r')
+    image = Image.open(os.path.dirname(__file__) + "/info_button.png", mode = 'r')
     resized_image= image.resize((15,15))
     img = ImageTk.PhotoImage(resized_image)
 

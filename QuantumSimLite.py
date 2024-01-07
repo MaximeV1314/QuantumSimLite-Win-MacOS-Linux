@@ -104,7 +104,7 @@ def create_param_VP(rooot):
     frame.columnconfigure(1, weight=3)
     frame.columnconfigure(2, weight=8)
 
-    image = Image.open(os.path.dirname(__file__) + "\info_button.png", mode = 'r')
+    image = Image.open(os.path.dirname(__file__) + "/info_button.png", mode = 'r')
     resized_image= image.resize((15,15))
     img = ImageTk.PhotoImage(resized_image)
 
@@ -215,7 +215,7 @@ def create_param_DYN(rooot):
     frame.columnconfigure(1, weight=3)
     frame.columnconfigure(2, weight=7)
 
-    image = Image.open(os.path.dirname(__file__) + "\info_button.png", mode = 'r')
+    image = Image.open(os.path.dirname(__file__) + "/info_button.png", mode = 'r')
     resized_image= image.resize((15,15))
     img = ImageTk.PhotoImage(resized_image)
 
@@ -411,12 +411,15 @@ during which the application may experience a temporary freeze. Please, wait unt
                                         interval= 10, blit=True)
         
         if event == 'save':
-            start_button.state(['disabled'])
-            save_button.state(['disabled'])
-            writervideo = animation.FFMpegWriter(fps=40)
-            ani.save('media/' + potential_choice_dyn.get() + '/dynamic/' + strftime("%Y-%m-%d %H-%M-%S") + '.mp4',writer=writervideo, dpi = 150)
-            start_button.state(['!disabled'])
-            save_button.state(['!disabled'])
+            try :
+                start_button.state(['disabled'])
+                save_button.state(['disabled'])
+                writervideo = animation.FFMpegWriter(fps=40)
+                ani.save('media/' + potential_choice_dyn.get() + '/dynamic/' + strftime("%Y-%m-%d %H-%M-%S") + '.mp4',writer=writervideo, dpi = 150)
+                start_button.state(['!disabled'])
+                save_button.state(['!disabled'])
+            except :
+                showinfo("Information", "Saving animation is impossible because you do not have ffmpeg.")
 
         figure.canvas.mpl_connect('button_press_event', onClick)
         figure_canvas.draw()
@@ -436,7 +439,9 @@ def main():
     root.title('QM Software by @Maximev1314')
     root.geometry("1000x720+50+50")
     root.resizable(False, False)
-    root.iconbitmap('maximelogo.ico')
+    #root.iconbitmap('maximelogo.ico')
+    icon = ImageTk.PhotoImage(Image.open(os.path.dirname(__file__) + "/maximelogo.ico", mode = "r"))
+    root.iconphoto(True, icon)
 
     frame1 = create_param_VP(notebook_param)
     frame1.pack()
