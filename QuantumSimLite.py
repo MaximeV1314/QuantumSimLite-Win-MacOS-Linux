@@ -411,13 +411,9 @@ during which the application may experience a temporary freeze. Please, wait unt
                                         interval= 10, blit=True)
         
         if event == 'save':
+            writervideo = animation.FFMpegWriter(fps=40)
             try :
-                start_button.state(['disabled'])
-                save_button.state(['disabled'])
-                writervideo = animation.FFMpegWriter(fps=40)
                 ani.save('media/' + potential_choice_dyn.get() + '/dynamic/' + strftime("%Y-%m-%d %H-%M-%S") + '.mp4',writer=writervideo, dpi = 150)
-                start_button.state(['!disabled'])
-                save_button.state(['!disabled'])
             except :
                 showinfo("Information", "Saving animation is impossible because you do not have ffmpeg.")
 
