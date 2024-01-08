@@ -44,7 +44,18 @@ def create_param_VP(rooot):
         df_vp = pa.read_csv(df_vp_, index_col=0)
         vp = df_vp.to_numpy().flatten()
 
-        index = int(spin_box.get())
+        try : 
+            index = int(spin_box.get())
+        except :
+            showinfo("Information", "The value entered in the eigenstate spin box is incorrect." \
+                     + "Please enter a number between 0 and the discretize level.")
+            index = 0
+
+        if index >= len(vp) :
+            showinfo("Information", "The number of eigenstates is equal to the discretization level;" \
+                     + " therefore, you cannot exceed this limit.")
+            index = 0
+            
         if type(event) == type(0):
             index = event
     
@@ -116,6 +127,7 @@ def create_param_VP(rooot):
     potential_cb.grid(column=1, row=0, sticky= tk.W, padx = 5, pady = 5)
     potential_cb.bind("<<ComboboxSelected>>", update_vp)
     potential_cb.current(0)
+    potential_cb['state'] = 'readonly'
 
     new_potential = ttk.Button(frame, text = "New Potential", command = lambda : def_new_potential0())
     new_potential.grid(column=1, row=1, sticky=tk.W, padx = 5, pady = 5)
@@ -166,6 +178,7 @@ def create_param_VP(rooot):
     Wave_part_cb.grid(column=1, row=4, sticky= tk.W, padx = 5, pady = 5)
     Wave_part_cb.current(2)
     Wave_part_cb.bind("<<ComboboxSelected>>", update_vp)
+    Wave_part_cb['state'] = 'readonly'
 
     potential_checkb_var = tk.BooleanVar(value = "True")
     potential_checkb = ttk.Checkbutton(frame, text = "Show Potential", \
@@ -228,6 +241,7 @@ def create_param_DYN(rooot):
                                     postcommand = lambda : def_new_potential(potential_cb_dyn, False))
     potential_cb_dyn.grid(column=1, row=0, sticky= tk.W, padx = 5, pady = 5)
     potential_cb_dyn.current(0)
+    potential_cb_dyn['state'] = 'readonly'
 
     ttk.Label(frame, text = "Initial wave : ", background="white").grid(column=0, row=3, sticky=tk.E, ipadx=5, ipady=5)
 
@@ -237,6 +251,7 @@ def create_param_DYN(rooot):
     initial_wave_cb = ttk.Combobox(frame, textvariable = initial_wave_choice, values = initial_wave_list)
     initial_wave_cb.grid(column=1, row=3, sticky= tk.W, padx = 5, pady = 5)
     initial_wave_cb.current(0)
+    initial_wave_cb['state'] = 'readonly'
 
     slider_eps_value = tk.DoubleVar(value=2)
     slider_eps_label = ttk.Label(frame, text = "σ = ", image=img, compound="right", background="white")
