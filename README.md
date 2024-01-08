@@ -1,4 +1,4 @@
-Welcome to QuantumSimLite aplication made by Maxime Vinteler (@maximev1314 on Twitter) ! This document provides essential information to help you navigate and make the most of the functionalities offered by my software.
+Welcome to QuantumSimLite application made by Maxime Vinteler (@maximev1314 on Twitter) ! This document provides essential information to help you navigate and make the most of the functionalities offered by my software.
 
 ## Key Features:
 
@@ -11,8 +11,7 @@ Welcome to QuantumSimLite aplication made by Maxime Vinteler (@maximev1314 on Tw
    - Experience real-time changes in the system.
 
 3. **Downloadable Resources:**
-   - Download eigenstates and dynamic simulations for further analysis.
-   - Access downloadable files, including videos and images, in the designated media folder.
+   - Download eigenstates and dynamic simulations (FFMPEG require for videos).
    - Note: Saving images or videos may cause a temporary freeze in the application.
 
 ## Important Information:
@@ -23,6 +22,10 @@ Welcome to QuantumSimLite aplication made by Maxime Vinteler (@maximev1314 on Tw
    - Access crucial details by hovering over the "blue information icons" in the application.
    - Read and follow the provided information for correct usage of the software.
 
+- **Information Tools:**
+   - Access crucial details by hovering over the "blue information icons" in the application.
+   - Read and follow the provided information for correct usage of the software.
+     
 - **Media Folder:**
    - Locate additional resources, including videos and images, in the 'media' folder.
    - Utilize these materials for a richer experience and deeper insights.
@@ -42,10 +45,12 @@ Ensure your system meets the following requirements for optimal performance:
     - Numpy at https://numpy.org/install/
     - Pandas at https://pandas.pydata.org/docs/getting_started/install.html
     - PIL at https://pillow.readthedocs.io/en/stable/installation.html
-    - Idlelib wich is normaly already downloaded with python 3.7+ in Windows and MACOS. In Linux, use on the prompt the command : sudo apt-get install idle3
-    - FFmepeg at https://www.ffmpeg.org/download.html
-5. Execute the python script QuantumSimLite.py
-6. Enjoy.
+    - Idlelib wich is already included with python 3.7+ on Windows and MACOS. On Linux, you can install it using the command: sudo apt-get install idle3
+4. (Optionnal) FFMPEG is require to download dynamic videos. I recommend following these straightforward tutorials to install it :
+   - For Windows : https://phoenixnap.com/kb/ffmpeg-windows
+   - For MACOS : https://phoenixnap.com/kb/ffmpeg-mac
+   - For Linux : https://phoenixnap.com/kb/install-ffmpeg-ubuntu
+5. Run the Python script QuantumSimLite.py (note that the first time you open it, the application may take some time).
 
 ## Usage Guidelines:
 
