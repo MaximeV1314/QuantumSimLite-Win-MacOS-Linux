@@ -95,3 +95,8 @@ def dynamique(potential, iw, x0, k0, T, pas, sigma):
         psi_norm.append(np.sum(np.conjugate(psi_T)*psi_T).real)
 
     return psi, psi_norm, psi_p, t, x_mean, p_mean, x_inc, p_inc
+
+#######################################################
+#######   QuantumSimLite made by @maximev131   ########
+####    Reach me out at maxime.vinteler@yahoo.fr   ####
+#######################################################

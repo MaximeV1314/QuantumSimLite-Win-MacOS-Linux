@@ -19,6 +19,11 @@ from time import strftime
 matplotlib.use('TkAgg')
 
 def def_new_potential(potential_cb, create):
+
+    """
+    Create a new potential and/or update potential list from comboboxes.
+    """
+
     if create:
         pcg.create_new_potential()
     potential_list = [K for K in pa.read_csv('VP/1D/potential_data_name.csv', index_col=0).columns.values]
@@ -206,7 +211,7 @@ Saving all eigenstates may take several seconds, during which the application ma
 
     frame2 = tk.Frame(frame, bg="white")
     frame2.grid(column=2, row = 0, rowspan=100)
-    figure = Figure(figsize=(7, 7), dpi=100)
+    figure = Figure(figsize=(7, 7), dpi=100)           #7,7
     figure_canvas = FigureCanvasTkAgg(figure, frame2)
     figure_canvas.get_tk_widget().pack()
     ax = figure.add_axes([0.1,0.45,0.8,0.5])
@@ -295,7 +300,7 @@ def create_param_DYN(rooot):
     slider_time_value_label = ttk.Label(frame, text = "0.0", background="white")
     slider_time_value_label.grid(column=1, row=7, sticky=tk.W, ipadx=5, ipady=5)
     
-    slider_time = ttk.Scale(frame, from_=5, to=60, variable=slider_time_value,
+    slider_time = ttk.Scale(frame, from_=5, to=30, variable=slider_time_value,
                           command = lambda event : slider_time_value_label.configure(text = str(slider_time_value.get())[:2]))
     slider_time.grid(column=1, row=7, padx=5, pady=5)
     slider_time.set(15)
@@ -449,8 +454,7 @@ def main():
 
     root.title('QM Software by @Maximev1314')
     root.geometry("1000x720+50+50")
-    root.resizable(False, False)
-    #root.iconbitmap('maximelogo.ico')
+    root.maxsize(1000, 720) 
     icon = ImageTk.PhotoImage(Image.open(os.path.dirname(__file__) + "/maximelogo.ico", mode = "r"))
     root.iconphoto(True, icon)
 
@@ -465,3 +469,8 @@ def main():
     root.mainloop()
 
 main()
+
+#######################################################
+#######   QuantumSimLite made by @maximev131   ########
+####    Reach me out at maxime.vinteler@yahoo.fr   ####
+#######################################################

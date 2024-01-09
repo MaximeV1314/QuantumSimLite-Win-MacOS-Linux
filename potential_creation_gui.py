@@ -64,7 +64,7 @@ Note that you have to write 2*x for 'two times x' and 2x will not work.\nExample
     slider_N_value_label = ttk.Label(root2, text = "200")
     slider_N_value_label.grid(column=1, row=3, sticky=tk.W, ipadx=5, ipady=5, padx = 20)
     
-    slider_N = ttk.Scale(root2, from_=100, to=600, variable=slider_N_value, 
+    slider_N = ttk.Scale(root2, from_=100, to=500, variable=slider_N_value, 
                           command = lambda event : slider_N_value_label.configure(text = "%.0f" % slider_N_value.get()))
     slider_N.grid(column=1, row=3, padx=5, pady=5)
     slider_N.set(200)
@@ -116,3 +116,8 @@ Note that calculation time increases with the number of points\n(particularly fo
 
     root2.protocol("WM_DELETE_WINDOW", def_cancel_button)
     root2.mainloop()
+
+#######################################################
+#######   QuantumSimLite made by @maximev131   ########
+####    Reach me out at maxime.vinteler@yahoo.fr   ####
+#######################################################
