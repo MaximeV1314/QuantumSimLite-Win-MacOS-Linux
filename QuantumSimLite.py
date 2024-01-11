@@ -135,7 +135,7 @@ def create_param_VP(rooot):
     potential_cb['state'] = 'readonly'
 
     new_potential = ttk.Button(frame, text = "New Potential", command = lambda : def_new_potential0())
-    new_potential.grid(column=1, row=1, sticky=tk.W, padx = 5, pady = 5)
+    new_potential.grid(column=1, row=1, sticky=tk.W, padx = 5)
 
     def def_new_potential0():
         new_potential.state(['disabled'])
@@ -143,7 +143,7 @@ def create_param_VP(rooot):
         new_potential.state(['!disabled'])
 
     delete_potential = ttk.Button(frame, text = "Delete", command = lambda : delete())
-    delete_potential.grid(column=1, row = 1, sticky=tk.E)
+    delete_potential.grid(column=1, row = 2, sticky=tk.W, padx=5)
 
     def delete():
         """
@@ -188,16 +188,16 @@ def create_param_VP(rooot):
     potential_checkb_var = tk.BooleanVar(value = "True")
     potential_checkb = ttk.Checkbutton(frame, text = "Show Potential", \
                                         variable = potential_checkb_var, command=lambda:update_vp(""))
-    potential_checkb.grid(column=1, row=5, sticky= tk.W, padx = 5, pady = 5)
+    potential_checkb.grid(column=1, row=5, sticky= tk.W, padx = 5)
 
     legend_checkb_var = tk.BooleanVar(value = "True")
     legend_checkb = ttk.Checkbutton(frame, text = "Show legend", \
                                         variable = legend_checkb_var, command=lambda:update_vp(""))
-    legend_checkb.grid(column=0, row=5, sticky= tk.E, padx = 5, pady = 5)
+    legend_checkb.grid(column=1, row=6, sticky= tk.W, padx = 5)
 
     save_eig_button = ttk.Button(frame, text = "Save All", image=img, compound="right", command = lambda : save())
     save_eig_button.image = img
-    save_eig_button.grid(column=1, row=7, pady = 10)
+    save_eig_button.grid(column=1, row=7, sticky=tk.W, pady = 5, padx = 5)
     Tip_save_eig = Hovertip(save_eig_button, "Save all eigenstates corresponding to the selected potential as .png files in the media/'potential name'/Eigenstates directory.\n\
 Saving all eigenstates may take several seconds, during which the application may experience a temporary freeze. Please, wait until the process is complete.")
 
@@ -211,9 +211,9 @@ Saving all eigenstates may take several seconds, during which the application ma
 
     frame2 = tk.Frame(frame, bg="white")
     frame2.grid(column=2, row = 0, rowspan=100)
-    figure = Figure(figsize=(7, 7), dpi=100)           #7,7
+    figure = Figure(figsize=(12, 8), dpi=100)           #7,7
     figure_canvas = FigureCanvasTkAgg(figure, frame2)
-    figure_canvas.get_tk_widget().pack()
+    figure_canvas.get_tk_widget().pack(side = "top", fill = "both", expand  =True)
     ax = figure.add_axes([0.1,0.45,0.8,0.5])
     ax2 = figure.add_axes([0.1,0.1,0.8,0.3])
     ax2.grid()
@@ -230,7 +230,7 @@ def create_param_DYN(rooot):
     frame = tk.Frame(rooot, bg="white")
 
     frame.columnconfigure(0, weight=1)
-    frame.columnconfigure(1, weight=3)
+    frame.columnconfigure(1, weight=1)
     frame.columnconfigure(2, weight=7)
 
     image = Image.open(os.path.dirname(__file__) + "/info_button.png", mode = 'r')
@@ -259,11 +259,11 @@ def create_param_DYN(rooot):
     initial_wave_cb['state'] = 'readonly'
 
     slider_eps_value = tk.DoubleVar(value=2)
-    slider_eps_label = ttk.Label(frame, text = "σ = ", image=img, compound="right", background="white")
+    slider_eps_label = ttk.Label(frame, text = "σ", image=img, compound="right", background="white")
     slider_eps_label.image = img
-    slider_eps_label.grid(column=0, row=4, sticky=tk.E, ipadx=5, ipady=5)
-    slider_eps_value_label = ttk.Label(frame, text = "2", background="white")
-    slider_eps_value_label.grid(column=1, row=4, sticky=tk.W, ipadx=5, ipady=5)
+    slider_eps_label.grid(column=0, row=4, ipadx=5, ipady=5, padx = 20)
+    slider_eps_value_label = ttk.Label(frame, text = "2.0", background="white")
+    slider_eps_value_label.grid(column=0, row=4, sticky=tk.E, ipady=5, padx=0)
 
     Tip_slider_eps = Hovertip(slider_eps_label, "Width at half maximum of the Gaussian/Lorentzian.")
     
@@ -273,32 +273,35 @@ def create_param_DYN(rooot):
 
     
     slider_x0_value = tk.DoubleVar()
-    slider_x0_label = ttk.Label(frame, text = "Initial position : " + str(), background="white")
-    slider_x0_label.grid(column=0, row=5, sticky=tk.E, ipadx=5, ipady=5)
+    slider_x0_label = ttk.Label(frame, text = "X0", image=img, compound="right", background="white")
+    slider_x0_label.grid(column=0, row=5, ipadx=5, ipady=5)
     slider_x0_value_label = ttk.Label(frame, text = "0.0", background="white")
-    slider_x0_value_label.grid(column=1, row=5, sticky=tk.W, ipadx=5, ipady=5)
+    slider_x0_value_label.grid(column=0, row=5, sticky=tk.E, ipady=5)
     
     slider_x0 = ttk.Scale(frame, from_=-10, to=10, variable=slider_x0_value, 
                           command = lambda event : slider_x0_value_label.configure(text = "%.1f" % slider_x0_value.get()))
     slider_x0.grid(column=1, row=5, padx=5, pady=5)
-
+    
+    Tip_k = Hovertip(slider_x0_label, "Initial position.")
 
     slider_k0_value = tk.DoubleVar()
-    slider_k0_label = ttk.Label(frame, text = "Initial momentum : " + str(), background="white")
-    slider_k0_label.grid(column=0, row=6, sticky=tk.E, ipadx=5, ipady=5)
+    slider_k0_label = ttk.Label(frame, text = "P0", image=img, compound="right", background="white")
+    slider_k0_label.grid(column=0, row=6, ipadx=5, ipady=5)
     slider_k0_value_label = ttk.Label(frame, text = "0.0", background="white")
-    slider_k0_value_label.grid(column=1, row=6, sticky=tk.W, ipadx=5, ipady=5)
+    slider_k0_value_label.grid(column=0, row=6, sticky=tk.E, ipady=5)
     
     slider_k0 = ttk.Scale(frame, from_=-15, to=15, variable=slider_k0_value, 
                           command = lambda event : slider_k0_value_label.configure(text = "%.1f" % slider_k0_value.get()))
     slider_k0.grid(column=1, row=6, padx=5, pady=5)
 
+    Tip_k = Hovertip(slider_k0_label, "Initial momentum.")
+
     slider_time_value = tk.DoubleVar()
-    slider_time_label = ttk.Label(frame, text = "Time : ", image = img, compound= "right", background="white")
+    slider_time_label = ttk.Label(frame, text = "Time", image = img, compound= "right", background="white")
     slider_time_label.image = img
-    slider_time_label.grid(column=0, row=7, sticky=tk.E, ipadx=5, ipady=5)
+    slider_time_label.grid(column=0, row=7, ipadx=5, ipady=5)
     slider_time_value_label = ttk.Label(frame, text = "0.0", background="white")
-    slider_time_value_label.grid(column=1, row=7, sticky=tk.W, ipadx=5, ipady=5)
+    slider_time_value_label.grid(column=0, row=7, sticky=tk.E, ipady=5)
     
     slider_time = ttk.Scale(frame, from_=5, to=30, variable=slider_time_value,
                           command = lambda event : slider_time_value_label.configure(text = str(slider_time_value.get())[:2]))
@@ -313,7 +316,7 @@ def create_param_DYN(rooot):
 
     start_button = ttk.Button(frame, text = "Start", image = img, compound="right", command = lambda:start_dynamique(""))
     start_button.image = img
-    start_button.grid(column=0, row=9, columnspan=2, sticky=tk.E, pady = 10)
+    start_button.grid(column=1, row=9, columnspan=2, sticky=tk.W, padx=10)
 
     Tip_start = Hovertip(start_button, "Initiate dynamic evolution.\n\nThe upper graphic displays the state evolution in position representation, \n\
 providing frame count, norm, mean, and standard deviation indicators. \n\n\
@@ -324,7 +327,7 @@ The animation may take several seconds, depending on the values of t and the dis
 
     save_button = ttk.Button(frame, text = "Save", image=img, compound="right", command = lambda:start_dynamique("save"))
     save_button.image = img
-    save_button.grid(column=0, row=9, columnspan=2, padx = 100, pady = 10)
+    save_button.grid(column=1, row=10, sticky=tk.W, columnspan=2, padx = 10)
 
     Tip_save_dyn = Hovertip(save_button, "Save the animation as a mp4 in media/'potential name'/Dynamic directory.\n\
 Saving all eigenstates may take several seconds/minutes (depending on the values of t and the discretization level),\n\
@@ -332,7 +335,7 @@ during which the application may experience a temporary freeze. Please, wait unt
 
     frame2 = tk.Frame(frame, bg="white")
     frame2.grid(column=2, row = 0, rowspan=100)
-    figure = Figure(figsize=(7, 7), dpi=100)
+    figure = Figure(figsize=(12, 8), dpi=100)
     figure_canvas = FigureCanvasTkAgg(figure, frame2)
     ax = figure.add_axes([0.1,0.45,0.8,0.5])
     ax2 = figure.add_axes([0.1,0.1,0.8,0.3])
@@ -383,7 +386,7 @@ during which the application may experience a temporary freeze. Please, wait unt
         ax.set_ylim(np.min(np.array(psi).real), np.max(np.max(np.array(psi).real)))
         ax.grid()
         ax.plot([-L,L], [0,0], linestyle = "dotted", color = "black")
-        box = ax.text(0.12,0.05, "", bbox={'facecolor':'w', 'alpha':0.8, 'pad':5},
+        box = ax.text(0.07,0.05, "", bbox={'facecolor':'w', 'alpha':0.8, 'pad':5},
                 transform=ax.transAxes, ha="center")
         
 
@@ -391,11 +394,11 @@ during which the application may experience a temporary freeze. Please, wait unt
         line_imag_p, = ax2.plot([], [], color = "red")
         line_proba_p, = ax2.plot([], [], linewidth = 4, color = "black")
 
-        ax2.set_xlim(-20, 20)   #provient du momentum max qui est de +/- 10
+        ax2.set_xlim(p[0], p[-1])   #provient du momentum max qui est de +/- 10
         ax2.set_ylim(np.min(np.array(psi_p).real), np.max(np.array(psi_p).real))
         ax2.grid()
         ax2.plot([-np.pi/dx, np.pi/dx], [0,0], linestyle = "dotted", color = "black")
-        box2 = ax2.text(0.13,-0.65, "", bbox={'facecolor':'w', 'alpha':0.8, 'pad':5},
+        box2 = ax2.text(0.07,-0.65, "", bbox={'facecolor':'w', 'alpha':0.8, 'pad':5},
                 transform=ax.transAxes, ha="center")
         
         anim_running = True
@@ -453,8 +456,8 @@ def main():
     notebook_param.pack()
 
     root.title('QM Software by @Maximev1314')
-    root.geometry("1000x720+50+50")
-    root.maxsize(1000, 720) 
+    root.geometry("1300x800+10+10")
+    #root.maxsize(1000, 720) 
     icon = ImageTk.PhotoImage(Image.open(os.path.dirname(__file__) + "/maximelogo.ico", mode = "r"))
     root.iconphoto(True, icon)
 
