@@ -63,3 +63,7 @@ If you encounter any issues or have questions, feel free to reach out at maxime.
 Special thanks to Paul Rieunier (@LaMatriceCarree and @rotor_mr on Twitter) for creating the application's logo.
 
 Happy Quantum Simulating!
+
+## Version
+- 1.1 Can now put the app in full screen (Current)
+- 1.0 Release of the application
