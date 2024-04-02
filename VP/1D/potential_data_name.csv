@@ -1,2 +1,0 @@
-,Box,Ring,Harmonic Oscillator,Barrier,1D lattice
-0,X*0,0*x,x*x,10*exp(-x**2),1-1/abs(cos(x))

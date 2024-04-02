@@ -40,9 +40,11 @@ def create_new_dynamic():
         if int(df_pot[potential_choice_dyn.get()][1]) == 1 :
             slider_y0['state'] = 'disabled'
             slider_ky0['state'] = 'disabled'
+            potential_formula_label['text'] = "V(x) = " + str(df_pot[potential_cb_dyn.get()][0])
         else :
             slider_y0['state'] = '!disabled'
             slider_ky0['state'] = '!disabled'
+            potential_formula_label['text'] = "V(x,y) = " + str(df_pot[potential_cb_dyn.get()][0])
 
     potential_label = ttk.Label(frame, text = "Potential : ", image=img, compound="right", background="white")
     potential_label.image = img
@@ -56,6 +58,8 @@ def create_new_dynamic():
 
     Tip_potental = Hovertip(potential_label, "Select one of the potentials for the dynamic simulation.")
 
+    potential_formula_label = ttk.Label(frame, text = "V(x) = 0 ", background="white")
+    potential_formula_label.grid(column=2, row=1, columnspan=2, sticky= tk.W, padx = 5, pady = 5)
 
     iw_label = ttk.Label(frame, text = "Initial wave : ",  image=img, compound="right", background="white")
     iw_label.image = img

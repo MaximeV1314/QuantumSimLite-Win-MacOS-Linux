@@ -131,7 +131,7 @@ def create_param_VP(rooot):
 
             ax.set_xlim(-10,10)
             ax.plot([-L,L], [0,0], linestyle = "dotted", color = "black")
-            ax.set_title("Eigenstate")
+            ax.set_title("Eigenstate of " + potential_cb.get() + ": V(x) = " + str(df_pot[potential_cb.get()][0]))
 
             if potential_checkb_var.get()==True:
                 try :
@@ -204,8 +204,8 @@ def create_param_VP(rooot):
             ax4.set_xticks([0, int(N/4), int(2*N/4), int(3*N/4), N-1], [-10, -5, 0, 5, 10])
             ax4.set_yticks([0, int(N/4), int(2*N/4), int(3*N/4), N-1], [-10, -5, 0, 5, 10])
 
-            ax3.set_title("Probability density of eigenstate")
-            ax4.set_title("Potential")
+            ax3.set_title("Probability density of eigenstate of " + potential_cb.get())
+            ax4.set_title("V(x,y) = " + str(df_pot[potential_cb.get()][0]))
             ax5.set_title("Energy level = %.2f" % np.array(df_vp.iloc[index])[0])
 
             try :
@@ -662,7 +662,7 @@ during which the application may experience a temporary freeze. Please, wait unt
             ax.set_ylim(np.min(np.array(psi).real), np.max(np.max(np.array(psi).real)))
             ax.grid()
             ax.plot([-L,L], [0,0], linestyle = "dotted", color = "black")
-            ax.set_title("Wave function")
+            ax.set_title("Wave function for " + potential_cb_dyn.get() + " : V(x) = " + str(df_pot[potential_cb_dyn.get()][0]))
             box = ax.text(0.07,0.05, "", bbox={'facecolor':'w', 'alpha':0.8, 'pad':5},
                     transform=ax.transAxes, ha="center")
             
@@ -714,7 +714,7 @@ during which the application may experience a temporary freeze. Please, wait unt
             if event == 'save':
                 writervideo = animation.FFMpegWriter(fps=25)
                 try :
-                    ani.save('media/' + potential_choice_dyn.get() + '/dynamic/' + strftime("%Y-%m-%d %H-%M-%S") + '.mp4',writer=writervideo, dpi = 100)
+                    ani.save('media/' + potential_choice_dyn.get() + '/dynamic/' + strftime("%Y-%m-%d %H-%M-%S") + '.mp4',writer=writervideo, dpi = 150)
                 except :
                     showinfo("Information", "Saving animation is impossible because you do not have ffmpeg.")
 
@@ -751,7 +751,7 @@ during which the application may experience a temporary freeze. Please, wait unt
             ax5.set_xlim(-L,L)
             ax5.set_ylim(-L,L)
 
-            ax3.set_title('Probability density of the wave function')
+            ax3.set_title('Probability density for ' + potential_cb_dyn.get() + " : V(x,y) = " + str(df_pot[potential_cb_dyn.get()][0]))
             ax4.set_title('PD of momentum')
             ax5.set_title('Mean position')
             ax6.set_title('Mean momentum')
@@ -795,7 +795,7 @@ during which the application may experience a temporary freeze. Please, wait unt
             if event == 'save':
                 writervideo = animation.FFMpegWriter(fps=25)
                 try :
-                    anim.save('media/' + potential_choice_dyn.get() + '/dynamic/' + strftime("%Y-%m-%d %H-%M-%S") + '.mp4',writer=writervideo, dpi = 120)
+                    anim.save('media/' + potential_choice_dyn.get() + '/dynamic/' + strftime("%Y-%m-%d %H-%M-%S") + '.mp4',writer=writervideo, dpi = 150)
                 except :
                     showinfo("Information", "Saving animation is impossible because you do not have ffmpeg.")
 

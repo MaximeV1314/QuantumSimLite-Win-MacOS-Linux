@@ -54,9 +54,9 @@ def create_new_potential():
 
         else :
             new_pf_label['text'] = "V(X,Y) = "
-            slider_N["from_"] = 20
+            slider_N["from_"] = 40
             slider_N["to"] = 100
-            slider_N.set(80)
+            slider_N.set(60)
             BCD_rb['value'] = 0
             BCP_rb['value'] = 1
             BCD_rb['state'] = "disabled"
@@ -116,7 +116,7 @@ Note that calculation time increases with the number of points\n(particularly fo
         df = pa.read_csv('VP/potential_data_name.csv', index_col=0)
 
         for pot_save in [K for K in df.columns.values]:
-            if pot_save[0] == name_new_potential.get() :
+            if pot_save == name_new_potential.get() :
                 showinfo(title='Information', message='There is already a potential with that name.')
                 return 0
             
@@ -141,12 +141,12 @@ Note that calculation time increases with the number of points\n(particularly fo
                          int(slider_N_value.get()), int(dimension_variable.get()))
         
         if back == 0 :
-            showinfo("warning", message = "An error has occurred in your potential formula." + \
-          " Please refer to the provided information on correctly formatting a potential formula located next to the entry.")
-
             create_button['state'] = "!disabled"
             cancel_button['state'] = "!disabled"
             popup.destroy()
+        
+            showinfo("warning", message = "An error has occurred in your potential formula." + \
+          " Please refer to the provided information on correctly formatting a potential formula located next to the entry.")
 
             return 0
         
@@ -179,8 +179,8 @@ Note that calculation time increases with the number of points\n(particularly fo
         cancel_button['state'] = "!disabled"
     
         popup.destroy()
-        # root2.destroy()
-        # root2.quit()
+        root2.destroy()
+        root2.quit()
 
 
     def start_finalisation():
